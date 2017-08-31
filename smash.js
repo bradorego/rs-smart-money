@@ -32,7 +32,7 @@ let getFilteredItems = function (username = "bradorego", res, next) {
       console.log(items.length);
 
       user.skills.combat = {"level": (calculateCombatLevel(user.skills))};
-      let filtered = items.filter((item) => {
+      let able = items.filter((item) => {
         if (!item.skills) {
           return true;
         }
@@ -50,8 +50,26 @@ let getFilteredItems = function (username = "bradorego", res, next) {
         return goodToGo;
       });
 
-      console.log(filtered.length);
-      res.json(filtered);
+      let unable = items.filter((item) => { /// I'm sure there's a better way to do this...
+        if (!item.skills) {
+          return false;
+        }
+        let goodToGo = false;
+        item.skills.forEach((skill) => {
+          if (skill.type === "constitution") {
+            skill.type = "hitpoints"; /// i hate you rsapi
+          }
+          // console.log(skill.level, user.skills[skill.type].level);
+          if (skill.level > user.skills[skill.type].level) {
+            goodToGo = true;
+            return true;
+          }
+        });
+        return goodToGo;
+      });
+
+      console.log(able.length);
+      res.json({"able": able, "unable": unable});
       firebase.database().goOffline(); /// tell FB to release so node process ends
     }).catch((err) => {
       console.error(err);
