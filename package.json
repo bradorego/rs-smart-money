@@ -1,0 +1,27 @@
+{
+  "name": "sxsw-scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradorego-afi/sxsw-scrape.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradorego-afi/sxsw-scrape/issues"
+  },
+  "homepage": "https://github.com/bradorego-afi/sxsw-scrape#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "cheerio": "^0.22.0",
+    "csv": "^1.1.1",
+    "firebase": "^4.3.0",
+    "json2csv": "^3.7.3",
+    "request": "^2.79.0"
+  }
+}
