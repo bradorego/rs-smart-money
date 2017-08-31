@@ -11,7 +11,7 @@ firebase.initializeApp({
   storageBucket: "rs-moneymaking.appspot.com",
   messagingSenderId: "247482085782"
 });
-var dbRef = firebase.database().ref();
+var dbRef = firebase.database().ref(); /// i guess it needs to be initialized? don't ask
 
 var handleResponse = function(error, response, html) {
   // First we'll check to make sure no errors occurred when making the request
@@ -20,10 +20,9 @@ var handleResponse = function(error, response, html) {
     var $ = cheerio.load(html);
     var cells = [],
       currentItem = {},
-      currentSkill = {},
       level = 0,
-      itemList = [],
-      $skill = {};
+      type = "",
+      itemList = [];
     $("table.wikitable").eq(0).find("tr").each(function (i) { /// pull only the first table for now
       if (i === 0) { /// do nothing on the first element because it's the headers
         return;
@@ -48,9 +47,13 @@ var handleResponse = function(error, response, html) {
         }
         $(skill).find("img").each(function (index) { /// go through every image
           if (index % 2 === 0) { /// there's a base64 version and an external for some godawful reason
+            type = $(this).attr("alt").split("-")[0].toLowerCase() /// alt is [skill type]-icon, runescape-api has them lowercase
+            if (type === "multicombat") { /// icon is called multicombat; smash.js calculates combat
+              type = "combat";
+            }
             currentItem.skills.push({ /// add every skill on the row to this item's list
               "level": level,
-              "type": $(this).attr("alt").split("-")[0] /// alt is [skill type]-icon
+              "type": type
             });
           }
         });
@@ -64,6 +67,7 @@ var handleResponse = function(error, response, html) {
     itemList.sort((a,b) => { /// sort it high to low for funsies
       return (a.profit > b.profit) ?  -1 : 1;
     });
+    console.log(itemList);
     firebase.database().ref("items").set(itemList);
     firebase.database().goOffline(); /// tell FB to release so node process ends
   }
