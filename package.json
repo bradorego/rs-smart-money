@@ -17,11 +17,8 @@
   },
   "homepage": "https://github.com/bradorego/rs-smart-money#readme",
   "dependencies": {
-    "bluebird": "^3.4.7",
     "cheerio": "^0.22.0",
-    "csv": "^1.1.1",
     "firebase": "^4.3.0",
-    "json2csv": "^3.7.3",
     "request": "^2.79.0"
   }
 }
