@@ -1,5 +1,5 @@
 {
-  "name": "sxsw-scrape",
+  "name": "rs-smart-money",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bradorego-afi/sxsw-scrape.git"
+    "url": "git+https://github.com/bradorego/rs-smart-money.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bradorego-afi/sxsw-scrape/issues"
+    "url": "https://github.com/bradorego/rs-smart-money/issues"
   },
-  "homepage": "https://github.com/bradorego-afi/sxsw-scrape#readme",
+  "homepage": "https://github.com/bradorego/rs-smart-money#readme",
   "dependencies": {
     "bluebird": "^3.4.7",
     "cheerio": "^0.22.0",
