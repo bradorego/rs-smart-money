@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/bradorego/rs-smart-money#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "cheerio": "^0.22.0",
+    "compression": "^1.7.0",
+    "express": "^4.15.4",
     "firebase": "^4.3.0",
+    "morgan": "^1.8.2",
     "request": "^2.79.0",
     "runescape-api": "^1.0.9"
   }
