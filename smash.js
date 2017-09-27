@@ -24,8 +24,7 @@ let calculateCombatLevel = function (skills) { /// formula from http://runescape
   return Math.floor((1.3 * Math.max((skills.attack.level + skills.strength.level), 2 * skills.magic.level, 2*skills.ranged.level) + skills.defence.level + skills.hitpoints.level + Math.floor(skills.prayer.level / 2) + Math.floor(skills.summoning.level / 2)) / 4)
 };
 
-let getFilteredItems = function (username = "bradorego", res, next) {
-  console.log(username);
+let getFilteredItems = function (username, res, next) {
   Promise.all([itemRef.once("value"), rsapi.rs.hiscores.player(username)])
     .then(([itemSnapshot, user]) => {
       let items = itemSnapshot.val();
